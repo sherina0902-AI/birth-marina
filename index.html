@@ -92,7 +92,7 @@
 
     .slide{
       position:absolute; inset:0;
-      padding:72px 24px 104px;
+      padding:58px 18px 92px;
       display:grid; place-items:center;
       opacity:0; transform:translateX(24px) scale(.985);
       transition:opacity .55s ease, transform .55s ease;
@@ -110,9 +110,9 @@
     .slide.dahlia::before{background:url('./bg-dahlia.jpg') center/cover no-repeat;filter:blur(2px) saturate(1.12)}
 
     .card{
-      width:min(1220px, 100%);
+      width:min(1320px, 100%);
       border-radius:34px;
-      padding:clamp(20px,2.8vw,34px);
+      padding:clamp(16px,2vw,28px);
       background:linear-gradient(135deg, rgba(255,255,255,.86), rgba(255,255,255,.74));
       border:1px solid rgba(255,255,255,.82);
       box-shadow:var(--shadow);
@@ -148,7 +148,7 @@
       min-height:min(720px, calc(100vh - 190px));
       display:grid;
       grid-template-columns:1.05fr .95fr;
-      gap:26px;
+      gap:20px;
       align-items:center;
     }
     .layout.reverse{grid-template-columns:.95fr 1.05fr}
@@ -156,44 +156,79 @@
 
     .gallery{
       display:grid;
-      grid-template-columns:repeat(3, 1fr);
-      gap:14px;
-      align-items:center;
+      grid-template-columns:1.12fr .88fr;
+      grid-template-areas:
+        "main top"
+        "main bottom";
+      gap:18px;
+      align-items:stretch;
+      min-height:560px;
+    }
+    .slide:nth-of-type(3) .gallery,
+    .slide:nth-of-type(5) .gallery{
+      grid-template-columns:.9fr 1.1fr;
+      grid-template-areas:
+        "top main"
+        "bottom main";
+    }
+    .slide:nth-of-type(4) .gallery,
+    .slide:nth-of-type(6) .gallery{
+      grid-template-columns:1fr 1fr;
+      grid-template-areas:
+        "main main"
+        "top bottom";
+      min-height:520px;
     }
     .photo-card{
       position:relative;
-      background:rgba(255,255,255,.94);
-      border:2px solid rgba(255,255,255,.98);
+      background:rgba(255,255,255,.88);
+      border:1px solid rgba(255,255,255,.96);
       border-radius:24px;
-      padding:8px;
+      padding:8px 8px 12px;
       box-shadow:var(--shadow-soft);
       overflow:visible;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      gap:8px;
     }
+    .gallery .photo-card:nth-child(1){grid-area:main;}
+    .gallery .photo-card:nth-child(2){grid-area:top;}
+    .gallery .photo-card:nth-child(3){grid-area:bottom;}
     .photo-card img{
       display:block;
       width:100%;
-      height:auto;
-      max-height:520px;
+      height:100%;
+      max-height:70vh;
       object-fit:contain;
       border-radius:16px;
       background:#fff;
+      border:3px solid rgba(255,255,255,.98);
+      box-shadow:0 10px 22px rgba(95,61,75,.10);
     }
     .tag{
-      position:absolute; left:14px; bottom:14px;
-      display:inline-flex; padding:7px 11px; border-radius:999px;
-      background:rgba(255,255,255,.96); color:var(--accent-dark);
-      font-size:12px; font-weight:800;
-      box-shadow:0 8px 18px rgba(95,61,75,.10);
+      position:static;
+      display:block;
+      width:100%;
+      padding:2px 4px 0;
+      color:var(--accent-dark);
+      font-family:'Marck Script', cursive;
+      font-size:clamp(20px, 2vw, 28px);
+      font-style:italic;
+      line-height:1.05;
+      text-align:center;
+      background:transparent;
+      box-shadow:none;
     }
     .slide:nth-of-type(2) .gallery .photo-card:nth-child(1),
     .slide:nth-of-type(5) .gallery .photo-card:nth-child(2),
     .slide:nth-of-type(6) .gallery .photo-card:nth-child(1){
-      transform:rotate(-1.2deg);
+      transform:rotate(-.7deg);
     }
     .slide:nth-of-type(3) .gallery .photo-card:nth-child(2),
     .slide:nth-of-type(4) .gallery .photo-card:nth-child(3),
     .slide:nth-of-type(6) .gallery .photo-card:nth-child(3){
-      transform:rotate(1.2deg);
+      transform:rotate(.7deg);
     }
 
     .signature{
@@ -245,8 +280,18 @@
       .card::before{inset:9px;border-radius:18px}
       .hero h1{font-size:58px}
       .block h2{font-size:44px}
-      .gallery{grid-template-columns:1fr;gap:12px}
-      .photo-card img{max-height:72vh;width:100%;object-fit:contain}
+      .gallery{
+        grid-template-columns:1fr;
+        grid-template-areas:none;
+        gap:14px;
+        min-height:0;
+      }
+      .gallery .photo-card:nth-child(1),
+      .gallery .photo-card:nth-child(2),
+      .gallery .photo-card:nth-child(3){grid-area:auto}
+      .photo-card{padding:7px 7px 10px}
+      .photo-card img{height:auto;max-height:76vh;width:100%;object-fit:contain}
+      .tag{font-size:24px}
       .nav{width:calc(100vw - 16px);justify-content:space-between;border-radius:22px;padding:10px}
       .nav button{padding:11px 13px;font-size:14px}
       .counter{min-width:auto;font-size:14px}
@@ -364,8 +409,6 @@
             <p class="text">Пусть впереди будет много красивых дней, ярких поводов для радости, хороших людей рядом и душевного спокойствия. Пусть всё важное складывается легко и счастливо.</p>
             <p class="text">Оставайся такой же живой, красивой, тонкой, мудрой и настоящей. И пусть наша дружба дальше только крепнет.</p>
             <div class="signature">С любовью Марине А. от Ирины Щ</div>
-            <button class="btn" id="finalBtn">Нажми на память</button>
-            <div class="final-message" id="finalMessage">С юбилеем, дорогая Марина! Пусть в жизни будет много любви, тепла, нежности, красивых событий и счастливых встреч.</div>
           </div>
         </div>
       </div>
@@ -386,8 +429,6 @@
     const prevBtn = document.getElementById('prevBtn');
     const nextBtn = document.getElementById('nextBtn');
     const openBtn = document.getElementById('openBtn');
-    const finalBtn = document.getElementById('finalBtn');
-    const finalMessage = document.getElementById('finalMessage');
     const presentation = document.querySelector('.presentation');
     let index = 0;
     let touchStartX = 0;
@@ -411,8 +452,6 @@
     });
 
     openBtn.addEventListener('click', () => document.body.classList.add('opened'));
-    finalBtn.addEventListener('click', () => finalMessage.classList.add('show'));
-
     presentation.addEventListener('touchstart', (e) => {
       touchStartX = e.changedTouches[0].screenX;
     }, {passive:true});
