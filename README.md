@@ -13,15 +13,11 @@
       --accent:#c65e86;
       --accent-dark:#a84a6e;
       --gold:#d9a04f;
-      --glass:rgba(255,255,255,.82);
-      --glass-strong:rgba(255,255,255,.92);
-      --line:rgba(255,255,255,.76);
       --shadow:0 26px 60px rgba(89,50,70,.16);
       --shadow-soft:0 14px 28px rgba(89,50,70,.10);
     }
-
     *{box-sizing:border-box}
-    html,body{margin:0;min-height:100%;}
+    html,body{margin:0;min-height:100%}
     body{
       font-family:'Montserrat', Arial, sans-serif;
       color:var(--ink);
@@ -30,28 +26,20 @@
     }
 
     .start-screen{
-      position:fixed;
-      inset:0;
-      z-index:30;
-      display:grid;
-      place-items:center;
-      padding:20px;
+      position:fixed; inset:0; z-index:30;
+      display:grid; place-items:center; padding:20px;
       background:
-        linear-gradient(rgba(255,247,250,.64), rgba(255,251,246,.68)),
+        linear-gradient(rgba(255,247,250,.66), rgba(255,251,246,.72)),
         url('./bg-peony.jpg') center/cover no-repeat;
       transition:opacity .75s ease, visibility .75s ease, transform .75s ease;
     }
-    body.opened .start-screen{
-      opacity:0;
-      visibility:hidden;
-      transform:scale(1.03);
-    }
+    body.opened .start-screen{opacity:0;visibility:hidden;transform:scale(1.03)}
 
     .envelope{
       width:min(760px, 100%);
       border-radius:34px;
-      padding:clamp(24px, 4vw, 42px);
-      background:linear-gradient(135deg, rgba(255,255,255,.90), rgba(255,255,255,.78));
+      padding:clamp(24px,4vw,42px);
+      background:linear-gradient(135deg, rgba(255,255,255,.92), rgba(255,255,255,.80));
       border:1px solid rgba(255,255,255,.92);
       box-shadow:var(--shadow);
       text-align:center;
@@ -59,11 +47,8 @@
       overflow:hidden;
       backdrop-filter:blur(10px);
     }
-    .envelope::before,
-    .envelope::after{
-      content:"";
-      position:absolute;
-      border-radius:50%;
+    .envelope::before,.envelope::after{
+      content:""; position:absolute; border-radius:50%;
       background:radial-gradient(circle, rgba(233,170,194,.28), transparent 68%);
       pointer-events:none;
     }
@@ -71,44 +56,27 @@
     .envelope::after{width:220px;height:220px;right:-65px;bottom:-75px}
 
     .kicker{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      margin-bottom:14px;
-      padding:10px 16px;
-      border-radius:999px;
+      display:inline-flex; align-items:center; gap:8px;
+      margin-bottom:14px; padding:10px 16px; border-radius:999px;
       background:rgba(255,255,255,.86);
       color:var(--accent-dark);
-      font-size:12px;
-      font-weight:800;
-      text-transform:uppercase;
-      letter-spacing:.08em;
+      font-size:12px; font-weight:800; text-transform:uppercase; letter-spacing:.08em;
       box-shadow:var(--shadow-soft);
     }
-
     .script-title{
       margin:0 0 16px;
       font-family:'Marck Script', cursive;
-      font-size:clamp(44px, 8vw, 82px);
+      font-size:clamp(44px,8vw,82px);
       line-height:.95;
       color:var(--accent);
     }
     .envelope p{
-      margin:0 auto 26px;
-      max-width:580px;
-      line-height:1.75;
-      color:var(--soft);
-      font-size:clamp(15px, 2vw, 18px);
+      margin:0 auto 26px; max-width:580px; line-height:1.75;
+      color:var(--soft); font-size:clamp(15px,2vw,18px);
     }
-
     .btn{
-      appearance:none;
-      border:0;
-      border-radius:999px;
-      padding:15px 28px;
-      cursor:pointer;
-      color:#fff;
-      font-weight:800;
+      appearance:none; border:0; border-radius:999px;
+      padding:15px 28px; cursor:pointer; color:#fff; font-weight:800;
       background:linear-gradient(135deg, var(--accent), var(--gold));
       box-shadow:0 16px 30px rgba(198,94,134,.24);
       transition:transform .22s ease, box-shadow .22s ease;
@@ -116,55 +84,36 @@
     .btn:hover{transform:translateY(-2px);box-shadow:0 18px 34px rgba(198,94,134,.28)}
 
     .presentation{
-      position:relative;
-      width:100%;
-      height:100vh;
-      opacity:.15;
-      transform:translateY(10px);
-      filter:blur(6px);
+      position:relative; width:100%; height:100vh;
+      opacity:.15; transform:translateY(10px); filter:blur(6px);
       transition:opacity .75s ease, transform .75s ease, filter .75s ease;
     }
     body.opened .presentation{opacity:1;transform:none;filter:none}
 
     .slide{
-      position:absolute;
-      inset:0;
-      padding:72px 24px 104px;
-      display:grid;
-      place-items:center;
-      opacity:0;
-      transform:translateX(24px) scale(.985);
+      position:absolute; inset:0;
+      padding:58px 18px 92px;
+      display:grid; place-items:center;
+      opacity:0; transform:translateX(24px) scale(.985);
       transition:opacity .55s ease, transform .55s ease;
       pointer-events:none;
       isolation:isolate;
       overflow:auto;
     }
-    .slide.active{
-      opacity:1;
-      transform:translateX(0) scale(1);
-      pointer-events:auto;
-      z-index:2;
-    }
-    .slide::before,
-    .slide::after{
-      content:"";
-      position:absolute;
-      inset:0;
-      z-index:-2;
-      pointer-events:none;
-    }
+    .slide.active{opacity:1;transform:translateX(0) scale(1);pointer-events:auto;z-index:2}
+    .slide::before,.slide::after{content:"";position:absolute;inset:0;z-index:-2;pointer-events:none}
     .slide::after{
       z-index:-1;
-      background:linear-gradient(135deg, rgba(255,250,248,.82), rgba(255,249,252,.68) 42%, rgba(248,255,249,.72));
+      background:linear-gradient(135deg, rgba(255,250,248,.84), rgba(255,249,252,.68) 42%, rgba(248,255,249,.72));
     }
-    .slide.peony::before{background:url('./bg-peony.jpg') center/cover no-repeat; filter:blur(2px) saturate(1.12)}
-    .slide.dahlia::before{background:url('./bg-dahlia.jpg') center/cover no-repeat; filter:blur(2px) saturate(1.18)}
+    .slide.peony::before{background:url('./bg-peony.jpg') center/cover no-repeat;filter:blur(2px) saturate(1.08)}
+    .slide.dahlia::before{background:url('./bg-dahlia.jpg') center/cover no-repeat;filter:blur(2px) saturate(1.12)}
 
     .card{
-      width:min(1220px, 100%);
+      width:min(1320px, 100%);
       border-radius:34px;
-      padding:clamp(20px, 2.8vw, 34px);
-      background:linear-gradient(135deg, rgba(255,255,255,.84), rgba(255,255,255,.72));
+      padding:clamp(16px,2vw,28px);
+      background:linear-gradient(135deg, rgba(255,255,255,.86), rgba(255,255,255,.74));
       border:1px solid rgba(255,255,255,.82);
       box-shadow:var(--shadow);
       backdrop-filter:blur(12px);
@@ -172,194 +121,177 @@
       overflow:hidden;
     }
     .card::before{
-      content:"";
-      position:absolute;
-      inset:12px;
-      border-radius:24px;
-      border:1px solid rgba(255,255,255,.70);
-      pointer-events:none;
+      content:""; position:absolute; inset:12px; border-radius:24px;
+      border:1px solid rgba(255,255,255,.70); pointer-events:none;
     }
     .card-content{position:relative;z-index:1}
 
     .hero{
       min-height:min(720px, calc(100vh - 190px));
-      display:flex;
-      flex-direction:column;
-      justify-content:center;
-      align-items:center;
-      text-align:center;
-      gap:14px;
+      display:flex; flex-direction:column; justify-content:center; align-items:center;
+      text-align:center; gap:14px;
     }
-    .hero h1,
-    .block h2{
+    .hero h1,.block h2{
       margin:0;
       font-family:'Marck Script', cursive;
       color:var(--accent);
       text-shadow:0 8px 16px rgba(198,94,134,.12);
     }
-    .hero h1{font-size:clamp(52px, 8vw, 104px); line-height:.92;}
-    .block h2{font-size:clamp(34px, 5vw, 66px); line-height:1; margin-bottom:8px;}
-
-    .subtitle{
-      margin:0;
-      font-size:clamp(18px, 2vw, 25px);
-      font-weight:700;
-      color:var(--accent-dark);
-    }
-    .quote,
-    .text{
-      margin:0;
-      color:var(--soft);
-      line-height:1.8;
-    }
-    .quote{max-width:930px; font-size:clamp(18px, 2vw, 24px);}
-    .text{font-size:clamp(15px, 1.5vw, 20px)}
+    .hero h1{font-size:clamp(52px,8vw,104px);line-height:.92}
+    .block h2{font-size:clamp(34px,5vw,66px);line-height:1;margin-bottom:8px}
+    .subtitle{margin:0;font-size:clamp(18px,2vw,25px);font-weight:700;color:var(--accent-dark)}
+    .quote,.text{margin:0;color:var(--soft);line-height:1.8}
+    .quote{max-width:930px;font-size:clamp(18px,2vw,24px)}
+    .text{font-size:clamp(15px,1.5vw,20px)}
 
     .layout{
       min-height:min(720px, calc(100vh - 190px));
       display:grid;
-      grid-template-columns:1.02fr 1fr;
-      gap:26px;
+      grid-template-columns:1.05fr .95fr;
+      gap:20px;
       align-items:center;
     }
-    .layout.reverse{grid-template-columns:1fr 1.02fr}
-
-    .text-box{
-      display:flex;
-      flex-direction:column;
-      gap:14px;
-      padding:8px 6px;
-    }
+    .layout.reverse{grid-template-columns:.95fr 1.05fr}
+    .text-box{display:flex;flex-direction:column;gap:14px;padding:8px 6px}
 
     .gallery{
       display:grid;
-      grid-template-columns:repeat(3, 1fr);
-      gap:14px;
+      grid-template-columns:1.12fr .88fr;
+      grid-template-areas:
+        "main top"
+        "main bottom";
+      gap:18px;
       align-items:stretch;
+      min-height:560px;
+    }
+    .slide:nth-of-type(3) .gallery,
+    .slide:nth-of-type(5) .gallery{
+      grid-template-columns:.9fr 1.1fr;
+      grid-template-areas:
+        "top main"
+        "bottom main";
+    }
+    .slide:nth-of-type(4) .gallery,
+    .slide:nth-of-type(6) .gallery{
+      grid-template-columns:1fr 1fr;
+      grid-template-areas:
+        "main main"
+        "top bottom";
+      min-height:520px;
     }
     .photo-card{
-      background:var(--glass-strong);
-      border:1px solid rgba(255,255,255,.95);
+      position:relative;
+      background:rgba(255,255,255,.88);
+      border:1px solid rgba(255,255,255,.96);
       border-radius:24px;
-      padding:10px;
+      padding:8px 8px 12px;
       box-shadow:var(--shadow-soft);
-      overflow:hidden;
+      overflow:visible;
       display:flex;
       flex-direction:column;
+      justify-content:center;
       gap:8px;
-      min-height:240px;
     }
+    .gallery .photo-card:nth-child(1){grid-area:main;}
+    .gallery .photo-card:nth-child(2){grid-area:top;}
+    .gallery .photo-card:nth-child(3){grid-area:bottom;}
     .photo-card img{
+      display:block;
       width:100%;
       height:100%;
-      flex:1;
+      max-height:70vh;
       object-fit:contain;
-      display:block;
       border-radius:16px;
       background:#fff;
+      border:3px solid rgba(255,255,255,.98);
+      box-shadow:0 10px 22px rgba(95,61,75,.10);
     }
     .tag{
-      display:inline-flex;
-      align-self:flex-start;
-      padding:7px 11px;
-      border-radius:999px;
-      background:rgba(255,255,255,.95);
+      position:static;
+      display:block;
+      width:100%;
+      padding:2px 4px 0;
       color:var(--accent-dark);
-      font-size:12px;
-      font-weight:800;
-      box-shadow:0 8px 18px rgba(95,61,75,.08);
+      font-family:'Marck Script', cursive;
+      font-size:clamp(20px, 2vw, 28px);
+      font-style:italic;
+      line-height:1.05;
+      text-align:center;
+      background:transparent;
+      box-shadow:none;
+    }
+    .slide:nth-of-type(2) .gallery .photo-card:nth-child(1),
+    .slide:nth-of-type(5) .gallery .photo-card:nth-child(2),
+    .slide:nth-of-type(6) .gallery .photo-card:nth-child(1){
+      transform:rotate(-.7deg);
+    }
+    .slide:nth-of-type(3) .gallery .photo-card:nth-child(2),
+    .slide:nth-of-type(4) .gallery .photo-card:nth-child(3),
+    .slide:nth-of-type(6) .gallery .photo-card:nth-child(3){
+      transform:rotate(.7deg);
     }
 
     .signature{
-      display:inline-flex;
-      align-self:flex-start;
-      padding:10px 16px;
-      border-radius:16px;
-      background:rgba(255,255,255,.9);
-      color:var(--accent-dark);
-      font-weight:700;
+      display:inline-flex; align-self:flex-start; padding:10px 16px; border-radius:16px;
+      background:rgba(255,255,255,.9); color:var(--accent-dark); font-weight:700;
       box-shadow:var(--shadow-soft);
     }
     .final-message{
-      display:none;
-      padding:14px 16px;
-      border-radius:18px;
-      background:rgba(255,255,255,.92);
-      border:1px solid rgba(255,255,255,.95);
-      color:var(--soft);
-      line-height:1.7;
-      box-shadow:var(--shadow-soft);
+      display:none; padding:14px 16px; border-radius:18px;
+      background:rgba(255,255,255,.92); border:1px solid rgba(255,255,255,.95);
+      color:var(--soft); line-height:1.7; box-shadow:var(--shadow-soft);
     }
     .final-message.show{display:block}
 
     .nav{
-      position:fixed;
-      left:50%;
-      bottom:max(14px, env(safe-area-inset-bottom));
-      transform:translateX(-50%);
-      z-index:10;
-      display:flex;
-      align-items:center;
-      gap:10px;
-      padding:10px 12px;
-      border-radius:999px;
-      background:rgba(255,255,255,.80);
-      border:1px solid rgba(255,255,255,.9);
-      box-shadow:var(--shadow-soft);
-      backdrop-filter:blur(10px);
+      position:fixed; left:50%; bottom:max(14px, env(safe-area-inset-bottom));
+      transform:translateX(-50%); z-index:10;
+      display:flex; align-items:center; gap:10px;
+      padding:10px 12px; border-radius:999px;
+      background:rgba(255,255,255,.82); border:1px solid rgba(255,255,255,.9);
+      box-shadow:var(--shadow-soft); backdrop-filter:blur(10px);
     }
     .nav button{
-      appearance:none;
-      border:0;
-      cursor:pointer;
-      border-radius:999px;
-      padding:11px 16px;
-      background:#fff;
-      color:var(--ink);
-      font-weight:800;
+      appearance:none; border:0; cursor:pointer; border-radius:999px;
+      padding:11px 16px; background:#fff; color:var(--ink); font-weight:800;
       box-shadow:0 6px 14px rgba(95,61,75,.06);
     }
-    .counter{
-      min-width:72px;
-      text-align:center;
-      color:var(--soft);
-      font-weight:700;
-    }
+    .counter{min-width:72px;text-align:center;color:var(--soft);font-weight:700}
     .hint{
-      position:fixed;
-      right:18px;
-      bottom:20px;
-      z-index:10;
-      color:rgba(91,61,73,.56);
-      font-size:12px;
-      font-weight:600;
-      background:rgba(255,255,255,.55);
-      padding:8px 10px;
-      border-radius:999px;
-      backdrop-filter:blur(6px);
+      position:fixed; right:18px; bottom:20px; z-index:10;
+      color:rgba(91,61,73,.56); font-size:12px; font-weight:600;
+      background:rgba(255,255,255,.55); padding:8px 10px; border-radius:999px; backdrop-filter:blur(6px);
     }
 
-    @media (max-width: 1080px){
+    @media (max-width:1080px){
       body{overflow:auto}
       .presentation{height:auto;min-height:100vh}
       .slide{position:relative;display:none;min-height:100vh;padding:68px 16px 96px}
       .slide.active{display:grid}
-      .hero, .layout{min-height:auto}
-      .layout, .layout.reverse{grid-template-columns:1fr}
-      .gallery{grid-template-columns:repeat(3, 1fr)}
+      .hero,.layout{min-height:auto}
+      .layout,.layout.reverse{grid-template-columns:1fr}
+      .gallery{grid-template-columns:repeat(3,1fr)}
       .hint{display:none}
     }
-
-    @media (max-width: 760px){
+    @media (max-width:760px){
       .envelope{border-radius:28px;padding:26px 20px}
       .slide{padding:58px 12px 94px}
       .card{border-radius:26px;padding:18px}
       .card::before{inset:9px;border-radius:18px}
       .hero h1{font-size:58px}
       .block h2{font-size:44px}
-      .gallery{grid-template-columns:1fr;gap:12px}
-      .photo-card{min-height:unset}
-      .photo-card img{height:auto; max-height:320px; width:100%; object-fit:contain}
+      .gallery{
+        grid-template-columns:1fr;
+        grid-template-areas:none;
+        gap:14px;
+        min-height:0;
+      }
+      .gallery .photo-card:nth-child(1),
+      .gallery .photo-card:nth-child(2),
+      .gallery .photo-card:nth-child(3){grid-area:auto}
+      .photo-card{padding:7px 7px 10px}
+      .photo-card img{height:auto;max-height:76vh;width:100%;object-fit:contain}
+      .tag{font-size:24px}
       .nav{width:calc(100vw - 16px);justify-content:space-between;border-radius:22px;padding:10px}
       .nav button{padding:11px 13px;font-size:14px}
       .counter{min-width:auto;font-size:14px}
@@ -373,7 +305,7 @@
     <div class="envelope">
       <div class="kicker">поздравительная открытка</div>
       <h1 class="script-title">Для Марины</h1>
-      <p>Тёплая презентация о дружбе, встречах, поездках и всех моментах, которые с годами становятся только дороже. Открывается и на телефоне, и на компьютере.</p>
+      <p>Поздравление о дружбе, встречах, поездках и всех моментах, которые с годами становятся только дороже. Открывается и на телефоне, и на компьютере.</p>
       <button class="btn" id="openBtn">Открыть поздравление</button>
     </div>
   </div>
@@ -395,9 +327,9 @@
       <div class="card">
         <div class="card-content layout">
           <div class="gallery">
-            <div class="photo-card"><img src="./s2_1.jpg" alt="Марина с букетом"><span class="tag">всегда восхитительна</span></div>
-            <div class="photo-card"><img src="./s2_2.jpg" alt="Марина с близкими"><span class="tag">родные рядом</span></div>
-            <div class="photo-card"><img src="./s2_3.jpg" alt="Две подруги вместе"><span class="tag">годы дружбы</span></div>
+            <div class="photo-card"><img src="./slide2_a.jpg" alt="Марина с букетом"><span class="tag">всегда восхитительна</span></div>
+            <div class="photo-card"><img src="./slide2_b.jpg" alt="Марина с близкими"><span class="tag">родные рядом</span></div>
+            <div class="photo-card"><img src="./slide2_c.jpg" alt="Две подруги вместе"><span class="tag">годы дружбы</span></div>
           </div>
           <div class="text-box block">
             <div class="kicker">о дружбе</div>
@@ -419,9 +351,9 @@
             <p class="text">Ты умеешь делать атмосферу светлее — просто своим присутствием, улыбкой и внутренним теплом.</p>
           </div>
           <div class="gallery">
-            <div class="photo-card"><img src="./s3_1.jpg" alt="Подруги ночью в путешествии"><span class="tag">впечатления</span></div>
-            <div class="photo-card"><img src="./s3_2.jpg" alt="Подруги вместе дома"><span class="tag">душевно</span></div>
-            <div class="photo-card"><img src="./s3_3.jpg" alt="Праздничный стол и шампанское"><span class="tag">празднично</span></div>
+            <div class="photo-card"><img src="./slide3_a.jpg" alt="Подруги ночью в путешествии"><span class="tag">впечатления</span></div>
+            <div class="photo-card"><img src="./slide3_b.jpg" alt="Подруги вместе дома"><span class="tag">душевно</span></div>
+            <div class="photo-card"><img src="./slide3_c.jpg" alt="Праздничный стол и шампанское"><span class="tag">празднично</span></div>
           </div>
         </div>
       </div>
@@ -431,9 +363,9 @@
       <div class="card">
         <div class="card-content layout">
           <div class="gallery">
-            <div class="photo-card"><img src="./s4_1.jpg" alt="Три подруги вместе"><span class="tag">нежность</span></div>
-            <div class="photo-card"><img src="./s4_2.jpg" alt="Подруги в сомбреро"><span class="tag">весело</span></div>
-            <div class="photo-card"><img src="./s4_3.jpg" alt="Подруги на празднике"><span class="tag">ярко</span></div>
+            <div class="photo-card"><img src="./slide3_d.jpg" alt="Три подруги вместе"><span class="tag">нежность</span></div>
+            <div class="photo-card"><img src="./slide3_e.jpg" alt="Подруги в сомбреро"><span class="tag">весело</span></div>
+            <div class="photo-card"><img src="./slide3_f.jpg" alt="Подруги на празднике"><span class="tag">ярко</span></div>
           </div>
           <div class="text-box block">
             <div class="kicker">смех и радость</div>
@@ -455,9 +387,9 @@
             <p class="text">Пусть и дальше у тебя будет много сил, вдохновения, лёгкости, интереса к новому и счастливых моментов рядом с теми, кто тебя любит.</p>
           </div>
           <div class="gallery">
-            <div class="photo-card"><img src="./s5_1.jpg" alt="На спортивном мероприятии"><span class="tag">энергия</span></div>
-            <div class="photo-card"><img src="./s5_2.jpg" alt="Участницы забега"><span class="tag">вместе</span></div>
-            <div class="photo-card"><img src="./s5_3.jpg" alt="Отдых в воде"><span class="tag">отдых</span></div>
+            <div class="photo-card"><img src="./slide4_a.jpg" alt="На спортивном мероприятии"><span class="tag">энергия</span></div>
+            <div class="photo-card"><img src="./slide4_b.jpg" alt="Участницы забега"><span class="tag">вместе</span></div>
+            <div class="photo-card"><img src="./slide4_c.jpg" alt="Отдых в воде"><span class="tag">отдых</span></div>
           </div>
         </div>
       </div>
@@ -467,9 +399,9 @@
       <div class="card">
         <div class="card-content layout">
           <div class="gallery">
-            <div class="photo-card"><img src="./s6_1.jpg" alt="Подруги в путешествии"><span class="tag">дороги</span></div>
-            <div class="photo-card"><img src="./s6_2.jpg" alt="Три подруги за столом"><span class="tag">вечера</span></div>
-            <div class="photo-card"><img src="./s6_3.jpg" alt="Совместный досуг"><span class="tag">интересно</span></div>
+            <div class="photo-card"><img src="./slide4_d.jpg" alt="Подруги в путешествии"><span class="tag">дороги</span></div>
+            <div class="photo-card"><img src="./slide5_d.jpg" alt="Три подруги за столом"><span class="tag">вечера</span></div>
+            <div class="photo-card"><img src="./slide4_e.jpg" alt="Совместный досуг"><span class="tag">интересно</span></div>
           </div>
           <div class="text-box block">
             <div class="kicker">с любовью</div>
@@ -477,8 +409,6 @@
             <p class="text">Пусть впереди будет много красивых дней, ярких поводов для радости, хороших людей рядом и душевного спокойствия. Пусть всё важное складывается легко и счастливо.</p>
             <p class="text">Оставайся такой же живой, красивой, тонкой, мудрой и настоящей. И пусть наша дружба дальше только крепнет.</p>
             <div class="signature">С любовью Марине А. от Ирины Щ</div>
-            <button class="btn" id="finalBtn">Нажми на память</button>
-            <div class="final-message" id="finalMessage">С юбилеем, дорогая Марина! Пусть в жизни будет много любви, тепла, нежности, красивых событий и счастливых встреч.</div>
           </div>
         </div>
       </div>
@@ -499,12 +429,9 @@
     const prevBtn = document.getElementById('prevBtn');
     const nextBtn = document.getElementById('nextBtn');
     const openBtn = document.getElementById('openBtn');
-    const finalBtn = document.getElementById('finalBtn');
-    const finalMessage = document.getElementById('finalMessage');
     const presentation = document.querySelector('.presentation');
     let index = 0;
     let touchStartX = 0;
-    let touchEndX = 0;
 
     total.textContent = slides.length;
 
@@ -524,39 +451,17 @@
       if(event.key === 'ArrowLeft') showSlide(index - 1);
     });
 
-    openBtn.addEventListener('click', () => {
-      document.body.classList.add('opened');
-    });
-
-    finalBtn.addEventListener('click', () => {
-      finalMessage.classList.add('show');
-    });
-
+    openBtn.addEventListener('click', () => document.body.classList.add('opened'));
     presentation.addEventListener('touchstart', (e) => {
       touchStartX = e.changedTouches[0].screenX;
     }, {passive:true});
-
     presentation.addEventListener('touchend', (e) => {
-      touchEndX = e.changedTouches[0].screenX;
-      const delta = touchEndX - touchStartX;
+      const delta = e.changedTouches[0].screenX - touchStartX;
       if(Math.abs(delta) > 50){
         if(delta < 0) showSlide(index + 1);
         if(delta > 0) showSlide(index - 1);
       }
     }, {passive:true});
-
-    // Fallback for GitHub Pages image paths:
-    // first tries ./filename.jpg, then ./assets/filename.jpg.
-    document.querySelectorAll('img').forEach((img) => {
-      img.addEventListener('error', () => {
-        const raw = img.getAttribute('src') || '';
-        if (!raw.includes('/assets/')) {
-          const clean = raw.replace('./', '');
-          img.src = './assets/' + clean;
-        }
-      }, { once: true });
-    });
-
   </script>
 </body>
 </html>
