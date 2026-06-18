@@ -93,7 +93,7 @@
 
     .slide{
       position:absolute; inset:0;
-      padding:58px 18px 92px;
+      padding:34px 14px 76px;
       display:grid; place-items:center;
       opacity:0; transform:translateX(24px) scale(.985);
       transition:opacity .55s ease, transform .55s ease;
@@ -111,9 +111,9 @@
     .slide.dahlia::before{background:url('./bg-dahlia.jpg') center/cover no-repeat;filter:blur(2px) saturate(1.12)}
 
     .card{
-      width:min(1320px, 100%);
+      width:min(1480px, 100%);
       border-radius:34px;
-      padding:clamp(16px,2vw,28px);
+      padding:clamp(12px,1.4vw,20px);
       background:linear-gradient(135deg, rgba(255,255,255,.86), rgba(255,255,255,.74));
       border:1px solid rgba(255,255,255,.82);
       box-shadow:var(--shadow);
@@ -148,8 +148,8 @@
     .layout{
       min-height:min(720px, calc(100vh - 190px));
       display:grid;
-      grid-template-columns:1.05fr .95fr;
-      gap:20px;
+      grid-template-columns:1.38fr .62fr;
+      gap:16px;
       align-items:center;
     }
     .layout.reverse{grid-template-columns:.95fr 1.05fr}
@@ -157,79 +157,110 @@
 
     .gallery{
       display:grid;
-      grid-template-columns:1.12fr .88fr;
+      gap:18px;
+      align-items:stretch;
+      width:100%;
+      height:100%;
+      min-height:640px;
+    }
+
+    .gallery.layout-a{
+      grid-template-columns:1.35fr .85fr;
+      grid-template-rows:1fr 1fr;
       grid-template-areas:
         "main top"
         "main bottom";
-      gap:18px;
-      align-items:stretch;
-      min-height:560px;
     }
-    .slide:nth-of-type(3) .gallery,
-    .slide:nth-of-type(5) .gallery{
-      grid-template-columns:.9fr 1.1fr;
+    .gallery.layout-b{
+      grid-template-columns:.9fr 1.25fr;
+      grid-template-rows:1fr 1fr;
       grid-template-areas:
         "top main"
         "bottom main";
     }
-    .slide:nth-of-type(4) .gallery,
-    .slide:nth-of-type(6) .gallery{
+    .gallery.layout-c{
       grid-template-columns:1fr 1fr;
+      grid-template-rows:1.2fr .9fr;
       grid-template-areas:
         "main main"
         "top bottom";
-      min-height:520px;
     }
+    .gallery.layout-d{
+      grid-template-columns:1.25fr .95fr;
+      grid-template-rows:1fr 1fr;
+      grid-template-areas:
+        "main top"
+        "bottom bottom";
+    }
+    .gallery.layout-e{
+      grid-template-columns:.95fr 1.25fr;
+      grid-template-rows:1fr 1fr;
+      grid-template-areas:
+        "top main"
+        "bottom main";
+    }
+
     .photo-card{
-      position:relative;
-      background:rgba(255,255,255,.88);
-      border:1px solid rgba(255,255,255,.96);
-      border-radius:24px;
-      padding:8px 8px 12px;
-      box-shadow:var(--shadow-soft);
-      overflow:visible;
-      display:flex;
-      flex-direction:column;
-      justify-content:center;
+      min-height:0;
+      display:grid;
+      grid-template-rows:minmax(0, 1fr) auto;
       gap:8px;
+      background:transparent;
+      border:0;
+      border-radius:0;
+      padding:0;
+      box-shadow:none;
+      overflow:visible;
     }
     .gallery .photo-card:nth-child(1){grid-area:main;}
     .gallery .photo-card:nth-child(2){grid-area:top;}
     .gallery .photo-card:nth-child(3){grid-area:bottom;}
+
+    .photo-frame{
+      min-height:0;
+      height:100%;
+      width:100%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:7px;
+      border-radius:24px;
+      background:rgba(255,255,255,.96);
+      border:3px solid rgba(255,255,255,.99);
+      box-shadow:0 18px 34px rgba(95,61,75,.15);
+      overflow:hidden;
+    }
     .photo-card img{
       display:block;
       width:100%;
       height:100%;
-      max-height:70vh;
       object-fit:contain;
       border-radius:16px;
       background:#fff;
-      border:3px solid rgba(255,255,255,.98);
-      box-shadow:0 10px 22px rgba(95,61,75,.10);
     }
     .tag{
-      position:static;
       display:block;
       width:100%;
-      padding:2px 4px 0;
+      padding:0 6px 2px;
       color:var(--accent-dark);
       font-family:'Marck Script', cursive;
-      font-size:clamp(20px, 2vw, 28px);
+      font-size:clamp(22px, 2.2vw, 32px);
       font-style:italic;
       line-height:1.05;
       text-align:center;
       background:transparent;
       box-shadow:none;
     }
+
     .slide:nth-of-type(2) .gallery .photo-card:nth-child(1),
     .slide:nth-of-type(5) .gallery .photo-card:nth-child(2),
     .slide:nth-of-type(6) .gallery .photo-card:nth-child(1){
-      transform:rotate(-.7deg);
+      transform:rotate(-.45deg);
     }
     .slide:nth-of-type(3) .gallery .photo-card:nth-child(2),
     .slide:nth-of-type(4) .gallery .photo-card:nth-child(3),
     .slide:nth-of-type(6) .gallery .photo-card:nth-child(3){
-      transform:rotate(.7deg);
+      transform:rotate(.45deg);
     }
 
     .signature{
@@ -281,18 +312,26 @@
       .card::before{inset:9px;border-radius:18px}
       .hero h1{font-size:58px}
       .block h2{font-size:44px}
-      .gallery{
+      .gallery,
+      .gallery.layout-a,
+      .gallery.layout-b,
+      .gallery.layout-c,
+      .gallery.layout-d,
+      .gallery.layout-e{
         grid-template-columns:1fr;
+        grid-template-rows:auto;
         grid-template-areas:none;
-        gap:14px;
+        gap:16px;
         min-height:0;
+        height:auto;
       }
       .gallery .photo-card:nth-child(1),
       .gallery .photo-card:nth-child(2),
       .gallery .photo-card:nth-child(3){grid-area:auto}
-      .photo-card{padding:7px 7px 10px}
-      .photo-card img{height:auto;max-height:76vh;width:100%;object-fit:contain}
-      .tag{font-size:24px}
+      .photo-card{min-height:0}
+      .photo-frame{height:auto;min-height:0;padding:6px;border-radius:22px}
+      .photo-card img{height:auto;max-height:78vh;width:100%;object-fit:contain}
+      .tag{font-size:25px;padding-top:2px}
       .nav{width:calc(100vw - 16px);justify-content:space-between;border-radius:22px;padding:10px}
       .nav button{padding:11px 13px;font-size:14px}
       .counter{min-width:auto;font-size:14px}
@@ -327,10 +366,10 @@
     <section class="slide dahlia">
       <div class="card">
         <div class="card-content layout">
-          <div class="gallery">
-            <div class="photo-card"><img src="./slide2_a.jpg" alt="Марина с букетом"><span class="tag">всегда восхитительна</span></div>
-            <div class="photo-card"><img src="./slide2_b.jpg" alt="Марина с близкими"><span class="tag">родные рядом</span></div>
-            <div class="photo-card"><img src="./slide2_c.jpg" alt="Две подруги вместе"><span class="tag">годы дружбы</span></div>
+          <div class="gallery layout-a">
+            <div class="photo-card"><div class="photo-frame"><img src="./slide2_a.jpg" alt="Марина с букетом"></div><span class="tag">всегда восхитительна</span></div>
+            <div class="photo-card"><div class="photo-frame"><img src="./slide2_b.jpg" alt="Марина с близкими"></div><span class="tag">родные рядом</span></div>
+            <div class="photo-card"><div class="photo-frame"><img src="./slide2_c.jpg" alt="Две подруги вместе"></div><span class="tag">годы дружбы</span></div>
           </div>
           <div class="text-box block">
             <div class="kicker">о дружбе</div>
@@ -351,10 +390,10 @@
             <p class="text">Есть моменты, которые не нужно специально украшать — рядом с тобой они и так становятся красивыми. Праздники, разговоры, поездки и все наши встречи хранят то самое чувство близости.</p>
             <p class="text">Ты умеешь делать атмосферу светлее — просто своим присутствием, улыбкой и внутренним теплом.</p>
           </div>
-          <div class="gallery">
-            <div class="photo-card"><img src="./slide3_a.jpg" alt="Подруги ночью в путешествии"><span class="tag">впечатления</span></div>
-            <div class="photo-card"><img src="./slide3_b.jpg" alt="Подруги вместе дома"><span class="tag">душевно</span></div>
-            <div class="photo-card"><img src="./slide3_c.jpg" alt="Праздничный стол и шампанское"><span class="tag">празднично</span></div>
+          <div class="gallery layout-b">
+            <div class="photo-card"><div class="photo-frame"><img src="./slide3_a.jpg" alt="Подруги ночью в путешествии"></div><span class="tag">впечатления</span></div>
+            <div class="photo-card"><div class="photo-frame"><img src="./slide3_b.jpg" alt="Подруги вместе дома"></div><span class="tag">душевно</span></div>
+            <div class="photo-card"><div class="photo-frame"><img src="./slide3_c.jpg" alt="Праздничный стол и шампанское"></div><span class="tag">празднично</span></div>
           </div>
         </div>
       </div>
@@ -363,10 +402,10 @@
     <section class="slide dahlia">
       <div class="card">
         <div class="card-content layout">
-          <div class="gallery">
-            <div class="photo-card"><img src="./slide3_d.jpg" alt="Три подруги вместе"><span class="tag">нежность</span></div>
-            <div class="photo-card"><img src="./slide3_e.jpg" alt="Подруги в сомбреро"><span class="tag">весело</span></div>
-            <div class="photo-card"><img src="./slide3_f.jpg" alt="Подруги на празднике"><span class="tag">ярко</span></div>
+          <div class="gallery layout-c">
+            <div class="photo-card"><div class="photo-frame"><img src="./slide3_d.jpg" alt="Три подруги вместе"></div><span class="tag">нежность</span></div>
+            <div class="photo-card"><div class="photo-frame"><img src="./slide3_e.jpg" alt="Подруги в сомбреро"></div><span class="tag">весело</span></div>
+            <div class="photo-card"><div class="photo-frame"><img src="./slide3_f.jpg" alt="Подруги на празднике"></div><span class="tag">ярко</span></div>
           </div>
           <div class="text-box block">
             <div class="kicker">смех и радость</div>
@@ -387,10 +426,10 @@
             <p class="text">Наша дружба — это ещё и движение вперёд: общие события, активность, новые впечатления, поездки, яркие дни и умение радоваться жизни.</p>
             <p class="text">Пусть и дальше у тебя будет много сил, вдохновения, лёгкости, интереса к новому и счастливых моментов рядом с теми, кто тебя любит.</p>
           </div>
-          <div class="gallery">
-            <div class="photo-card"><img src="./slide4_a.jpg" alt="На спортивном мероприятии"><span class="tag">энергия</span></div>
-            <div class="photo-card"><img src="./slide4_b.jpg" alt="Участницы забега"><span class="tag">вместе</span></div>
-            <div class="photo-card"><img src="./slide4_c.jpg" alt="Отдых в воде"><span class="tag">отдых</span></div>
+          <div class="gallery layout-d">
+            <div class="photo-card"><div class="photo-frame"><img src="./slide4_a.jpg" alt="На спортивном мероприятии"></div><span class="tag">энергия</span></div>
+            <div class="photo-card"><div class="photo-frame"><img src="./slide4_b.jpg" alt="Участницы забега"></div><span class="tag">вместе</span></div>
+            <div class="photo-card"><div class="photo-frame"><img src="./slide4_c.jpg" alt="Отдых в воде"></div><span class="tag">отдых</span></div>
           </div>
         </div>
       </div>
@@ -399,10 +438,10 @@
     <section class="slide dahlia">
       <div class="card">
         <div class="card-content layout">
-          <div class="gallery">
-            <div class="photo-card"><img src="./slide4_d.jpg" alt="Подруги в путешествии"><span class="tag">дороги</span></div>
-            <div class="photo-card"><img src="./slide5_d.jpg" alt="Три подруги за столом"><span class="tag">вечера</span></div>
-            <div class="photo-card"><img src="./slide4_e.jpg" alt="Совместный досуг"><span class="tag">интересно</span></div>
+          <div class="gallery layout-e">
+            <div class="photo-card"><div class="photo-frame"><img src="./slide4_d.jpg" alt="Подруги в путешествии"></div><span class="tag">дороги</span></div>
+            <div class="photo-card"><div class="photo-frame"><img src="./slide5_d.jpg" alt="Три подруги за столом"></div><span class="tag">вечера</span></div>
+            <div class="photo-card"><div class="photo-frame"><img src="./slide4_e.jpg" alt="Совместный досуг"></div><span class="tag">интересно</span></div>
           </div>
           <div class="text-box block">
             <div class="kicker">с любовью</div>
